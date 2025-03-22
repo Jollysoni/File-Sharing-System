@@ -1,32 +1,41 @@
 package client;
 
 import java.io.*;
+import java.net.Socket;
 import java.util.ArrayList;
 
 public class FileClient {
-    private static final String SERVER_FOLDER = "server_files"; // Simulated server folder
+
+    private static String serverHost = "localhost";
+    private static String localFolderPath = "local_folder";
+
+    public static void configure(String host, String localFolder) {
+        serverHost = host;
+        localFolderPath = localFolder;
+    }
 
     public static boolean uploadFile(String filePath) {
-        File sourceFile = new File(filePath);
-        if (!sourceFile.exists()) {
-            return false;
-        }
-        File serverFolder = new File(SERVER_FOLDER);
-        if (!serverFolder.exists() && !serverFolder.mkdir()) {
+        File file = new File(filePath);
+        if (!file.exists()) {
             return false;
         }
 
-        try {
-            File destFile = new File(serverFolder, sourceFile.getName());
-            try (InputStream in = new FileInputStream(sourceFile);
-                 OutputStream out = new FileOutputStream(destFile)) {
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
-                }
+        try (Socket socket = new Socket(serverHost, 12345);
+             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader reader = new BufferedReader(new FileReader(file));
+             BufferedReader serverReader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+            // Send command: UPLOAD filename
+            writer.println("UPLOAD " + file.getName());
+
+            // Send file content line by line
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.println(line);
             }
+
             return true;
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -34,27 +43,29 @@ public class FileClient {
     }
 
     public static boolean downloadFile(String fileName) {
-        File serverFile = new File(SERVER_FOLDER, fileName);
-        if (!serverFile.exists()) {
-            return false;
-        }
-
-        File localFolder = new File("local_folder");
+        File localFolder = new File(localFolderPath);
         if (!localFolder.exists() && !localFolder.mkdir()) {
             return false;
         }
 
-        try {
-            File destFile = new File(localFolder, serverFile.getName());
-            try (InputStream in = new FileInputStream(serverFile);
-                 OutputStream out = new FileOutputStream(destFile)) {
-                byte[] buffer = new byte[1024];
-                int bytesRead;
-                while ((bytesRead = in.read(buffer)) != -1) {
-                    out.write(buffer, 0, bytesRead);
-                }
+        File destFile = new File(localFolder, fileName);
+
+        try (Socket socket = new Socket(serverHost, 12345);
+             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+             PrintWriter fileWriter = new PrintWriter(new FileWriter(destFile))) {
+
+            // Send the download command
+            writer.println("DOWNLOAD " + fileName);
+
+            // Read the content of the file line by line and save it
+            String line;
+            while ((line = reader.readLine()) != null) {
+                fileWriter.println(line);
             }
+
             return true;
+
         } catch (IOException e) {
             e.printStackTrace();
             return false;
@@ -63,15 +74,24 @@ public class FileClient {
 
     public static ArrayList<String> listFilesOnServer() {
         ArrayList<String> filesList = new ArrayList<>();
-        File serverFolder = new File(SERVER_FOLDER);
-        if (serverFolder.exists()) {
-            File[] files = serverFolder.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    filesList.add(file.getName());
-                }
+
+        try (Socket socket = new Socket(serverHost, 12345);
+             PrintWriter writer = new PrintWriter(socket.getOutputStream(), true);
+             BufferedReader reader = new BufferedReader(new InputStreamReader(socket.getInputStream()))) {
+
+            // Send the DIR command
+            writer.println("DIR");
+
+            // Read the list of files from the server
+            String line;
+            while ((line = reader.readLine()) != null) {
+                filesList.add(line);
             }
+
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+
         return filesList;
     }
 }

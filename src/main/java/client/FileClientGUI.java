@@ -10,7 +10,16 @@ public class FileClientGUI {
     private DefaultListModel<String> clientFilesModel;
     private DefaultListModel<String> serverFilesModel;
 
-    public FileClientGUI() {
+    private final String serverHost;
+    private final String localFolderPath;
+
+    public FileClientGUI(String serverHost, String localFolderPath) {
+        this.serverHost = serverHost;
+        this.localFolderPath = localFolderPath;
+
+        // Configure FileClient to use the provided host and local folder
+        FileClient.configure(serverHost, localFolderPath);
+
         frame = new JFrame("File Sharer");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 400);
@@ -42,7 +51,7 @@ public class FileClientGUI {
         uploadButton.addActionListener(e -> {
             String selectedFile = clientFilesList.getSelectedValue();
             if (selectedFile != null) {
-                if (FileClient.uploadFile("local_folder/" + selectedFile)) {
+                if (FileClient.uploadFile(localFolderPath + "/" + selectedFile)) {
                     JOptionPane.showMessageDialog(frame, "File uploaded successfully!");
 
                     // Refresh the server file list
@@ -77,7 +86,8 @@ public class FileClientGUI {
 
     private void loadClientFiles() {
         clientFilesModel.clear();
-        File folder = new File("local_folder");
+        File folder = new File(localFolderPath);
+        System.out.println("Local folder path: " + folder.getAbsolutePath());
         if (!folder.exists() && !folder.mkdir()) {
             JOptionPane.showMessageDialog(frame, "Could not create local folder!");
             return;
@@ -111,6 +121,14 @@ public class FileClientGUI {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(FileClientGUI::new);
+        if (args.length != 2) {
+            System.out.println("Usage: java FileClientGUI <server-hostname> <local-folder-path>");
+            System.exit(1);
+        }
+
+        String serverHost = args[0];
+        String localFolder = args[1];
+
+        SwingUtilities.invokeLater(() -> new FileClientGUI(serverHost, localFolder));
     }
 }

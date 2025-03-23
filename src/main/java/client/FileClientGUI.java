@@ -3,6 +3,7 @@ package client;
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
+import java.net.InetAddress;
 import java.util.ArrayList;
 
 public class FileClientGUI {
@@ -11,7 +12,9 @@ public class FileClientGUI {
     private DefaultListModel<String> serverFilesModel;
 
     public FileClientGUI() {
-        frame = new JFrame("File Sharer");
+
+        String clientName = getClientComputerName();
+        frame = new JFrame("File Sharer - " + clientName);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(500, 400);
         frame.setLayout(new BorderLayout());
@@ -75,6 +78,19 @@ public class FileClientGUI {
         frame.setVisible(true);
     }
 
+    private String getClientComputerName() {
+        try {
+            InetAddress inetAddress = InetAddress.getLocalHost();
+            String hostName = inetAddress.getHostName();
+            if (hostName.endsWith(".local")) {
+                hostName = hostName.substring(0, hostName.length() - 6);
+            }
+            return hostName.replace("-", " ");// Returns the client's computer name
+        } catch (Exception e) {
+            e.printStackTrace();
+            return "Unknown"; // Return "Unknown" if the name can't be fetched
+        }
+    }
     private void loadClientFiles() {
         clientFilesModel.clear();
         File folder = new File("local_folder");

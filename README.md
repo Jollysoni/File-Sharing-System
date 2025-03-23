@@ -76,6 +76,18 @@ users can easily share files with one another, contributing to a collaborative w
     <img src="A2Output.png" alt="Assignment 2 Output">
 </div>
 
+<div align="center">
+    <img src="2.png" alt="Assignment 2 Output">
+</div>
+
+<div align="center">
+    <img src="3.png" alt="Assignment 2 Output">
+</div>
+
+<div align="center">
+    <img src="4.png" alt="Assignment 2 Output">
+</div>
+
 ## UI Enhancements 
 
 To increase the readability, make our application more user-friendly, and add some aesthetics our group decided to add 

@@ -1,0 +1,24 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="FileClientGUI" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="client.FileClientGUI" />
+    <module name="assignment02" />
+    <option name="PROGRAM_PARAMETERS" value="localhost local_folder " />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+  <configuration default="false" name="FileClientGUI" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="client.FileClientGUI" />
+    <module name="assignment02" />
+    <option name="PROGRAM_PARAMETERS" value="localhost local_host" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="client.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

@@ -1,0 +1,10 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="FileServer" type="Application" factoryName="Application">
+    <option name="MAIN_CLASS_NAME" value="server.FileServer" />
+    <module name="assignment02" />
+    <option name="PROGRAM_PARAMETERS" value="12345" />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>

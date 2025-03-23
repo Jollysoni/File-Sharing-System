@@ -1,3 +1,5 @@
+PLEASE TEST OUT THE DELETE FUNCTIONALITY WITH THIS FILE
+
 While standing under the shade of an apple tree, Sir Isaac Newton saw an apple fall to the ground. “Why should that apple always descend perpendicularly to the ground,” Newton wondered. “Why should it not go sideways, or upwards, but constantly to the earth’s center? Assuredly, the reason is, that the earth draws it. There must be a drawing power in matter.”
 
 And thus, the concept of gravity was born.

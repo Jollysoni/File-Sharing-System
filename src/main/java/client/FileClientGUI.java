@@ -50,25 +50,10 @@ public class FileClientGUI {
         frame.setSize(700, 600);
         frame.setLayout(new BorderLayout());
 
-        // Theme toggle button
-        JMenuBar menuBar = new JMenuBar();
-        JMenu viewMenu = new JMenu("View");
-        JMenuItem toggleThemeItem = new JMenuItem("Toggle Theme");
-        viewMenu.add(toggleThemeItem);
-        menuBar.add(viewMenu);
-        frame.setJMenuBar(menuBar);
-
         // Default light theme
         applyLightTheme();
 
-        toggleThemeItem.addActionListener(e -> {
-            Color bg = frame.getContentPane().getBackground();
-            if (bg != null && bg.equals(Color.DARK_GRAY)) {
-                applyLightTheme();
-            } else {
-                applyDarkTheme();
-            }
-        });
+
 
         JPanel topPanel = new JPanel();
         JButton uploadButton = new JButton("Upload");

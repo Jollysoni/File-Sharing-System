@@ -72,7 +72,9 @@ users can easily share files with one another, contributing to a collaborative w
 
 ## Running Application 
 
-**Insert Screenshot of Running Application**
+<div align="center">
+    <img src="A2Output.png" alt="Assignment 2 Output">
+</div>
 
 ## UI Enhancements 
 
@@ -80,10 +82,11 @@ To increase the readability, make our application more user-friendly, and add so
 the following features: 
 
 1. Added the name of the client computer to the title of the window.
-2. Unified look for file name + buttons (visually grouped).
-3. Custom icons/buttons beside each file:
-- 🗑 Delete : Removes the file from that folder
-- ℹ Properties: Tells the size of the file, Name, Timestamp
+2. Users are able to upload files from the local device
+3. Users can see the contents of the file in a "Preview" section at the bottom of the window
+4. Custom icons/buttons beside each file:
+   - 🗑: Deletes the file from that folder
+   - ℹ : Gives the user details about the properties of the file including the size of the file, name of the file, and a timestamp of when the file was last updated
 
 ## How to Run The Application 
 
@@ -93,10 +96,10 @@ To successfully clone and run the application here are the steps the user must t
 2. Go onto the GitHub repository and copy its URL [Link to Repository](https://github.com/OntarioTech-CS-program/w25-csci2020u-assignment02-a2-soni-soni-dsouza.git)
 3. Open up the terminal and clone the repository using the following git command: **git clone**
 4. Open the project in the IDE of your choice (may have to import as a Maven Project)
-5. Navigate to the files called **FileServer** (src/main/java/server) and **FileClientGUI** (src/main/java/server)
-6. First run the **FileServer** file and then click on where it says **Current File** at the top right corner just before the **run button** and click on **Edit Configurations** then go to the **Application** folder on the left side 
-and select the **FileClientGUI** file and click **OK** then run that file)
+5. Navigate to the files called **FileServer.java** (src/main/java/server) and **FileClientGUI.java** (src/main/java/server)
+6. Before you can run any of the files please watch this short video on how to edit your configurations [Link to Video](https://drive.google.com/file/d/1UP2cc2wMwjjAMbErrP6CbnDOM_zJbmNu/view?usp=sharing)
+6. Once you have set up the configurations correctly please run the **FileServer.java** file first and then the **FileClientGUI.java** file.
 7. Give the application a couple seconds to run and then the output should be displayed!
 
-**Side Note**: When testing the code please upload the following files: "upload1.txt", "upload2.txt", and "upload3.txt" 
-and download the following files "download1.txt", and "download2.txt".
+**Side Note**: When testing the code please upload the following files: "upload1.txt", "upload2.txt", and "upload3.txt", 
+download the following files "download1.txt", and "download2.txt" and delete the "delete.txt" file.

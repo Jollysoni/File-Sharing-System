@@ -96,3 +96,5 @@ before the **run button** and click on **Edit Configurations** then go to the **
 and select the **FileClientGUI** file and click **OK** then run that file)
 7. Give the application a couple seconds to run and then the output should be displayed!
 
+**Side Note**: When testing the code please upload the following files: "upload1.txt", "upload2.txt", and "upload3.txt" 
+and download the following files "download1.txt", and "download2.txt".

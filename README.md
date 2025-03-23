@@ -80,7 +80,10 @@ To increase the readability, make our application more user-friendly, and add so
 the following features: 
 
 1. Added the name of the client computer to the title of the window.
-2. 
+2. Unified look for file name + buttons (visually grouped).
+3. Custom icons/buttons beside each file:
+- 🗑 Delete : Removes the file from that folder
+- ℹ Properties: Tells the size of the file, Name, Timestamp
 
 ## How to Run The Application 
 
@@ -91,8 +94,7 @@ To successfully clone and run the application here are the steps the user must t
 3. Open up the terminal and clone the repository using the following git command: **git clone**
 4. Open the project in the IDE of your choice (may have to import as a Maven Project)
 5. Navigate to the files called **FileServer** (src/main/java/server) and **FileClientGUI** (src/main/java/server)
-6. First run the **FileServer** file and then click on where it says **Current File** at the top right corner just 
-before the **run button** and click on **Edit Configurations** then go to the **Application** folder on the left side 
+6. First run the **FileServer** file and then click on where it says **Current File** at the top right corner just before the **run button** and click on **Edit Configurations** then go to the **Application** folder on the left side 
 and select the **FileClientGUI** file and click **OK** then run that file)
 7. Give the application a couple seconds to run and then the output should be displayed!
 

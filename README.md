@@ -3,7 +3,7 @@ CSCI 2020U: System Development and Integration
 
 ## Description
 
-For this assignment, we've been tasked with developing a client-server-based file-sharing system. The application 
+We developed a client-server-based file-sharing system. The application 
 enables users to interact with a shared file repository through a client-server architecture.
 
 The key functionalities of the application include:

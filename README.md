@@ -1,4 +1,4 @@
-File Sharing System
+### File Sharing System
 CSCI 2020U: System Development and Integration
 
 ## Description
